@@ -16,6 +16,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+
+        //cometchat repository
+        maven("https://dl.cloudsmith.io/public/cometchat/cometchat/maven/")
     }
 }
 

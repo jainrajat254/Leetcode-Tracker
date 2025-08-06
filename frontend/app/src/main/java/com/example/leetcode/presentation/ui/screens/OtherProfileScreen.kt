@@ -1,12 +1,17 @@
 package com.example.leetcode.presentation.ui.screens
 
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -15,8 +20,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.cometchat.chatuikit.shared.cometchatuikit.CometChatUIKit
+import com.example.leetcode.ConversationActivity
 import com.example.leetcode.presentation.ui.navigation.BottomNavBar
 import com.example.leetcode.presentation.ui.screens.components.EnhancedPullToRefresh
 import com.example.leetcode.presentation.ui.screens.components.LastThirtyDays
@@ -64,6 +72,8 @@ fun OtherProfileScreen(
     val displayName = nameAndLanguage.getOrNull(0) ?: username
     val primaryLanguage = nameAndLanguage.getOrNull(1) ?: "Java"
 
+    val context = LocalContext.current
+
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         bottomBar = { BottomNavBar(navController = navController) },
@@ -88,6 +98,32 @@ fun OtherProfileScreen(
                         username = username,
                         profilePhoto = (userProfile as? ResultState.Success)?.data?.userAvatar
                     )
+                }
+
+                item {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Button(
+                            onClick = {
+                                if (CometChatUIKit.getLoggedInUser() != null) {
+                                    val intent = Intent(context, ConversationActivity::class.java).apply {
+                                        putExtra("uid", username)
+                                        putExtra("name", displayName)
+                                    }
+                                    context.startActivity(intent)
+                                } else {
+                                    // Handle the case where the current user is not logged into CometChat.
+                                    // You can show a Toast message here.
+                                }
+                            }
+                        ) {
+                            Text("Message")
+                        }
+                    }
                 }
 
                 item {

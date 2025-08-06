@@ -73,11 +73,20 @@ fun LoginScreen(
 
             is ResultState.Error -> {
                 isDialog = false
-                Log.d("AUTH ERROR", (loginState as ResultState.Error).error.message.toString())
-                val error = (loginState as? ResultState.Error)?.error?.let { e ->
-                    (e as? HttpException)?.response()?.errorBody()?.string()
-                } ?: "Some error occurred"
-                Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+                val exception = (loginState as ResultState.Error).error
+                Log.e("AUTH ERROR", "Login failed: ${exception.message}", exception)
+
+                val errorMessage = when (exception) {
+                    is HttpException -> {
+                        // Try to get the error message from the response body
+                        exception.response()?.errorBody()?.string() ?: "HTTP error occurred."
+                    }
+                    else -> {
+                        // For other types of exceptions, use the general message
+                        exception.message ?: "Some unknown error occurred."
+                    }
+                }
+                Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show() // Use LONG for better visibility
             }
 
             ResultState.Idle -> isDialog = false

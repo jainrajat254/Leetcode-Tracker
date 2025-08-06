@@ -42,6 +42,9 @@ android {
     buildFeatures {
         compose = true
     }
+    buildFeatures {
+        viewBinding = true
+    }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
@@ -100,4 +103,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Cometchat dependencies
+    implementation(libs.cometchat.ui.kit)
+
+    // (Optional) Include if using voice/video calling features
+    implementation(libs.cometchat.calls.sdk)
+
+    implementation("com.google.android.material:material:1.12.0")
+
 }
