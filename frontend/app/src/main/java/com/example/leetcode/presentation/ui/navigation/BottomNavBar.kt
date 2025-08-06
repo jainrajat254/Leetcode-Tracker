@@ -28,6 +28,7 @@ fun BottomNavBar(
     val items = listOf(
         BottomNavItem(Routes.Home.route, R.drawable.baseline_home_24, "Home"),
         BottomNavItem(Routes.Stats.route, R.drawable.baseline_auto_graph_24, "Stats"),
+        BottomNavItem(Routes.Chat.route, R.drawable.baseline_chat_24, "Chat"),
         BottomNavItem(Routes.Leaderboard.route, R.drawable.baseline_leaderboard_24, "Leaderboard"),
         BottomNavItem(Routes.Profile.route, R.drawable.baseline_person_24, "Profile")
     )

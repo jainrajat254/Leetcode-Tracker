@@ -18,6 +18,10 @@ navigationCompose = "2.7.7"
 retrofit = "2.9.0"
 runtimeLivedata = "1.8.2"
 
+#cometchat versions
+cometchat-ui-kit = "5.1.0"
+cometchat-calls-sdk = "4.1.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationFragment" }
@@ -46,6 +50,9 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+#cometchat libraries
+cometchat-ui-kit = { module = "com.cometchat:chat-uikit-android", version.ref = "cometchat-ui-kit" }
+cometchat-calls-sdk = { module = "com.cometchat:calls-sdk-android", version.ref = "cometchat-calls-sdk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

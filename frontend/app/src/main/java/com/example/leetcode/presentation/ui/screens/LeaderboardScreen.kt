@@ -352,8 +352,7 @@ private fun TopThreeSection(
             val columnHeight =
                 if (index == 0) 160.dp else if (index == 1) 140.dp else 120.dp // Taller for 1st
 
-            Column(horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
+            Column( horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier
                     .width(100.dp)
                     .height(columnHeight)
                     .clickable { navController.navigate(Routes.OtherProfile.createRoute(user.username)) }) {

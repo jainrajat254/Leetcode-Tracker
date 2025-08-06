@@ -1,13 +1,20 @@
 package com.example.leetcode.presentation.ui.navigation
 
+import android.content.Intent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.leetcode.ConversationActivity
 import com.example.leetcode.presentation.ui.screens.ChangePasswordScreen
 import com.example.leetcode.presentation.ui.screens.EditProfileScreen
 import com.example.leetcode.presentation.ui.screens.HomeScreen
@@ -108,6 +115,17 @@ fun App() {
                 vm = userViewModel,
                 username = username
             )
+        }
+        composable(Routes.Chat.route) {
+            // Launch ConversationActivity from Compose
+            val context = LocalContext.current
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState())
+            ){
+                LaunchedEffect(Unit) {
+                    context.startActivity(Intent(context, ConversationActivity::class.java))
+                }
+            }
         }
     }
 }
